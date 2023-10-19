@@ -13,7 +13,7 @@ import {
 export const listPosts = (userLogin) => async (dispatch) => {
     try {
         dispatch({type: POST_LIST_REQUEST})
-        const{data}=await axios.get('http://127.0.0.1:8000/posts/',
+        const{data}=await axios.get('https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/posts/',
             {
                 headers: {
                     'Content-type': 'application/json',
@@ -73,7 +73,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 export const listReview = (id) => async (dispatch) => {
     try {
         dispatch({type: REVIEW_LIST_REQUEST})
-        const { data } = await axios.get(`http://127.0.0.1:8000/posts/${id}/reviews/`) 
+        const { data } = await axios.get(`https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/posts/${id}/reviews/`) 
         dispatch({
             type: REVIEW_LIST_SUCCESS, 
             payload: data
@@ -90,7 +90,7 @@ export const listReview = (id) => async (dispatch) => {
 export const reviewCreate = (id) => async (dispatch) => {
     try {
         dispatch({type: REVIEW_CREATE_REQUEST})
-        const { data } =  await axios.post(`http://127.0.0.1:8000/posts/${id}/reviews/create/`,{})
+        const { data } =  await axios.post(`https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/posts/${id}/reviews/create/`,{})
         dispatch = ({
             type: REVIEW_CREATE_SUCCESS,
             payload: data,

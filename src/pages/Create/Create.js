@@ -16,7 +16,7 @@ function Create() {
   const createPostHandler = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('http://127.0.0.1:8000/posts/create/',
+      const response = await axios.post('https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/posts/create/',
         {
           title: title,
           body: body,

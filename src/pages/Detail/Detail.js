@@ -21,7 +21,7 @@ function Detail() {
   const reviewList = useSelector(state => state.reviewList.review) 
   const handleDelete=async()=>{
     try{
-      const response = await axios.delete(`http://127.0.0.1:8000/posts/delete/${id}/`)
+      const response = await axios.delete(`https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/posts/delete/${id}/`)
       window.location.assign('/main') 
     } catch (error){
       console.error('리뷰 삭제 오류',error);
@@ -37,7 +37,7 @@ function Detail() {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const postResponse = await axios.get(`http://127.0.0.1:8000/posts/${id}/`)
+        const postResponse = await axios.get(`https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/posts/${id}/`)
         const postData = postResponse.data
         setPost(postData)
         dispatch(listReview(id))
