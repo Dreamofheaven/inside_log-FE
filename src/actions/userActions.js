@@ -20,7 +20,8 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
         const {data} = await axios.post(
-            'http://localhost:8000/accounts/login/', {'username': email, 'password':password},
+            // 'http://localhost:8000/accounts/login/', {'username': email, 'password':password},
+            'https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/accounts/login/', {'username': email, 'password':password},
             config
         )
         dispatch({
@@ -55,7 +56,7 @@ export const register = (name, email, phoneNumber, password) => async (dispatch)
             }
         }
         const {data} = await axios.post(
-            'http://localhost:8000/accounts/register/',
+            'https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/accounts/register/',
             {'name': name, 'email': email, 'phone_number': phoneNumber, 'password': password},
             config
         )
@@ -88,7 +89,7 @@ export const deleteUser=(id) => async (dispatch, getState)=> {
             },
         };
         const {data}=await axios.delete(
-            `http://localhost:8000/accounts/delete/${id}/`, 
+            `https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/accounts/delete/${id}/`, 
             config
         )
         dispatch({
@@ -121,7 +122,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             }
         }
         const { data } = await axios.get(
-            `http://localhost:8000/accounts/${id}/`,
+            `https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/accounts/${id}/`,
             config
         )
         dispatch({
@@ -156,7 +157,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(
-            `http://localhost:8000/accounts/profile/update/`,
+            `https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/accounts/profile/update/`,
             user,
             config
         )
@@ -198,7 +199,7 @@ export const updateUser = (user) => async (dispatch, getState)=>{
             }
         }
         const {data}=await axios.put(
-            `http://localhost:8000/accounts/update/${user.id}/`,
+            `https://port-0-inside-log-jvpb2alnwzgh39.sel5.cloudtype.app/accounts/update/${user.id}/`,
             user,
             config
         )
