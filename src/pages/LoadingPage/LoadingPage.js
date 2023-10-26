@@ -1,19 +1,19 @@
-import React from 'react'
-import './LoadingPage.css'
-import { Oval } from "react-loader-spinner"
+import React from 'react';
+import './LoadingPage.css';
+import { Oval } from "react-loader-spinner";
 
 function LoadingPage() {
     const searchParams = new URLSearchParams(window.location.search);
     const idFromURL = searchParams.get('id');
     setTimeout(()=> {
-    window.location.assign(`/posts/${idFromURL}`)
-      },40000); 
+    window.location.assign(`/posts/${idFromURL}`);
+      },20000); 
   return (
     <div className='loading-page'>
         <div className='runner-img'>
             <img src="images/runner.png" alt="달리는 사람" />
         </div>
-        <h2>GhatGPT가 답을 받아오고 있어요.</h2>
+        <h2>chatGPT가 답을 받아오고 있어요.</h2>
         <div className='loading-icon'>
             <Oval className="oval"/>
         </div>

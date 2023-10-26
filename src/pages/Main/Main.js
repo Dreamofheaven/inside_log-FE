@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { IoMdAddCircle } from "react-icons/io";
-import { useSelector, useDispatch } from 'react-redux'
-import { listPosts } from '../../actions/postAction'
-import Footer from '../../components/Footer'
-import Tree from '../../components/Tree'
-import PostList from '../../components/PostList'
+import { useSelector, useDispatch } from 'react-redux';
+import { listPosts } from '../../actions/postAction';
+import Footer from '../../components/Footer';
+import Tree from '../../components/Tree';
+import PostList from '../../components/PostList';
 import Paginate from '../../components/Paginate';
-import {logout, deleteUser, updateUser} from '../../actions/userActions'
+import {logout, deleteUser, updateUser} from '../../actions/userActions';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import './Main.css';
 
 function Main({}) { 
-  const token = sessionStorage.getItem('userInfo')
+  const token = sessionStorage.getItem('userInfo');
   let userInfoObject={};
   try{
     userInfoObject = JSON.parse(token);
@@ -24,30 +26,46 @@ function Main({}) {
   }
 
   // 드롭다운 관련
-  const [isDropdown, setIsDropdown] = useState(false)
+  const [isDropdown, setIsDropdown] = useState(false);
 
   const toggleDropdown = () => {
-    setIsDropdown(!isDropdown)
+    setIsDropdown(!isDropdown);
   }
 
-  const dispatch = useDispatch()
-  const postList = useSelector(state => state.postList)
+  const dispatch = useDispatch();
+  const postList = useSelector(state => state.postList);
 
-  const userLogin = useSelector(state => {return state.userLogin.userInfo})
-  const { loading, error, posts } = postList
+  const userLogin = useSelector(state => {return state.userLogin.userInfo});
+  const { posts } = postList;
 
   // 로그아웃
   const logOut = () => {
-      dispatch(logout())
+      dispatch(logout());
   };
   // 업데이트
   const update = () => {
-    dispatch(updateUser(userId))
+    dispatch(updateUser(userId));
   };
   // 게시글 
   useEffect(() => {
-    dispatch(listPosts(userLogin))
+    dispatch(listPosts(userLogin));
   }, [userLogin])
+    // 회원탈퇴
+    const onDelete = () => {
+      confirmAlert({
+        title: 'Confirm to click',
+        message: '계정을 삭제하시겠습니까?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: () => dispatch(deleteUser(userId))
+          },
+          {
+            label: 'No',
+          }
+        ]
+      });
+    }
 
 
   // 페이지 네이션 관련 코드
@@ -87,7 +105,7 @@ function Main({}) {
             <div className='dropdown-content'>
               <button onClick={logOut}>로그아웃</button>
               <Link to={`update/${userId}`}>정보변경</Link>
-              <button onClick={() => dispatch(deleteUser(userId))}>회원탈퇴</button>
+              <button onClick={onDelete}>회원탈퇴</button>
             </div>
           )}
         </div>  
@@ -103,6 +121,8 @@ function Main({}) {
           </div>
           ))}
       </div>
+
+      {/* 페이지네이션 */}
       <div className='paginate-wrap'>
         {count && <Paginate page={currentPage} count={count} setPage={setPage}/>}
       </div>
