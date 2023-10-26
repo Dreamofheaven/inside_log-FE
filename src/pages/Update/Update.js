@@ -31,7 +31,6 @@ function Update() {
         if (!user || !user.name || success || userInfo._id !== user._id) {
                 dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile')) 
-                console.log('getUser디테일 실행됨')
             } else {
                 setName(user.name)
                 setEmail(user.email)
@@ -69,8 +68,8 @@ function Update() {
             )}
 
             <form onSubmit={submitHandler}>
-                <input type="name" name="name" id="name" value={name} disabled onChange={(e) => setName(e.target.value)} />
-                <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="email" name="email" id="email" value={email} disabled onChange={(e) => setEmail(e.target.value)} />
+                <input type="name" name="name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                 <input type="phone_number" name="phone_number" id="phone_number" value={phone_number} onChange={(e) => setPhone_number(e.target.value)} />
                 <input type="password" name="password" id="password" placeholder='비밀번호' onChange={(e) => setPassword(e.target.value)} />
                 <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder='비밀번호 확인' onChange={(e) => setConfirmPassword(e.target.value)} />
